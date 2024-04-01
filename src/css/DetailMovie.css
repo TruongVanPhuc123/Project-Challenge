@@ -1,0 +1,22 @@
+.container-modal {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    gap: 50px;
+    text-transform: capitalize;
+    /* background-color: rgba(154, 154, 154, 0.1); */
+}
+
+.modal-img-name {
+    text-align: center;
+}
+
+.close-modal {
+    cursor: pointer;
+    position: absolute;
+    top: 20%;
+    right: 5%;
+    background-color: rgba(154, 154, 154, 0.1);
+
+}

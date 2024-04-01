@@ -1,17 +1,31 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import React from "react";
+import ReactDOM from "react-dom";
+import App from "./App";
+import { Routes, Route, BrowserRouter } from 'react-router-dom'
+import Login from "./page/Login";
+import DetailMovie from "./page/DetailMovie";
+import { AuthProvider } from "./context/AuthContext";
+import MovieSearch from "./layout/MovieSearch";
+import AllNowPlaying from "./layout/AllNowPlaying";
+import AllPopular from "./layout/AllPopular";
+import AllToprated from "./layout/AllToprated";
+import AllUpcoming from "./layout/AllUpcoming";
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
+    <AuthProvider>
+        <BrowserRouter>
+            <Routes>
+                <Route path="/" element={<App />} >
+                    <Route path="/detailmovies/:id" element={<DetailMovie />} />
+                </Route>
+                <Route path="/login" element={<Login />} />
+                <Route path="/search/movie/query/:id" element={<MovieSearch />}></Route>
+                <Route path="/seemore/nowplaying" element={<AllNowPlaying />} />
+                <Route path="/seemore/popular" element={<AllPopular />} />
+                <Route path="/seemore/toprated" element={<AllToprated />} />
+                <Route path="/seemore/upcoming" element={<AllUpcoming />} />
+            </Routes>
+        </BrowserRouter>
+    </AuthProvider>
 );
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
