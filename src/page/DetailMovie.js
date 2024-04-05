@@ -3,10 +3,10 @@ import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import '../css/DetailMovie.css';
 import CloseIcon from '@mui/icons-material/Close';
-import { Typography } from '@mui/material';
+import StarRateIcon from '@mui/icons-material/StarRate';
 
 const style = {
     position: 'absolute',
@@ -22,11 +22,10 @@ const style = {
 
 export default function BasicModal() {
     const navigate = useNavigate()
-    const [open, setOpen] = React.useState(false);
+    const [open, setOpen] = React.useState(true);
     const handleClose = () => {
-        setOpen(false)
+        navigate('/')
     };
-    const handleOpen = () => setOpen(true);
 
     const [dataID, setDataID] = React.useState([])
     const [dataGenres, setDataGenres] = React.useState([])
@@ -46,36 +45,27 @@ export default function BasicModal() {
 
     return (
         <div>
-            <button className='detailMovie' onClick={handleOpen}>Detail</button>
-
-            <Modal
-                open={open}
-                onClose={handleClose}
-                aria-labelledby="modal-modal-title"
-                aria-describedby="modal-modal-description"
-            >
-                <Box sx={style}>
-                    <div className='close-modal' onClick={() => handleClose()}>
-                        <CloseIcon />
+            <div className='container-modal'>
+                <div className='modal-img-name'>
+                    <img src={`https://image.tmdb.org/t/p/w500` + dataID.backdrop_path} />
+                    <span className='modal-title'>{dataID.title}</span>
+                </div>
+                <div className='allRight-modal'>
+                    <div className='date-rated-modal'>
+                        <span className='date-modal'>{dataID.release_date}</span>
+                        <span className='vote-modal'> <StarRateIcon />{dataID.vote_count}</span>
                     </div>
-                    <div className='container-modal'>
-                        <div className='modal-img-name'>
-                            <img src={`https://image.tmdb.org/t/p/w500` + dataID.backdrop_path} />
-                            <span className='modal-title'>{dataID.title}</span>
+                    <div className='modal-overview'>
+                        {dataID.overview}
+                        <div className='genres' style={{ display: "flex", gap: '30px', paddingTop: '10px' }}>
+                            {dataGenres.map(genres => (
+                                <span span > {genres.name}</span >
+                            ))}
                         </div>
-                        <div className='modal-overview'>
-                            {dataID.overview}
-                            <div className='genres' style={{ display: "flex", gap: '30px', paddingTop: '10px' }}>
-                                {dataGenres.map(genres => (
-                                    <span>{genres.name}</span>
-                                ))}
-                            </div>
-                        </div>
-
                     </div>
+                </div>
+            </div>
 
-                </Box>
-            </Modal>
-        </div>
+        </div >
     );
 }

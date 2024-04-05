@@ -1,64 +1,63 @@
-import * as React from 'react';
-import Box from '@mui/material/Box';
-import Modal from '@mui/material/Modal';
-import FTextField from '../components/FTextField'
-import { useForm, Controller } from "react-hook-form";
-import { LoadingButton } from '@mui/lab';
-import { AuthContext } from '../context/AuthContext';
-import { useNavigate } from 'react-router-dom';
+import { Alert, Stack, TextField, Typography } from '@mui/material'
+import React from 'react'
+import { Controller, useForm } from 'react-hook-form'
+import { AuthContext } from '../context/AuthContext'
+import { LoadingButton } from '@mui/lab'
+import { useNavigate } from 'react-router-dom'
+import { yupResolver } from "@hookform/resolvers/yup"
+import * as yup from 'yup'
 
-const style = {
-    position: 'absolute',
-    top: '50%',
-    left: '50%',
-    transform: 'translate(-50%, -50%)',
-    width: 400,
-    bgcolor: 'background.paper',
-    borderradius: '5px',
-    border: '2px solid #000',
-    boxShadow: 24,
-    p: 4,
-};
-
-const initialState = {
-    username: '',
-    password: '',
+const styleForm = {
+    width: "100%",
+    height: "400px",
+    padding: "10%",
+    backgroundColor: "rgba(255, 255, 255,0.1)",
 }
 
-export default function BasicModal() {
-    const [open, setOpen] = React.useState(true);
-    const handleClose = () => setOpen(false);
-    const { control, handleSubmit } = useForm({ initialState });
+const schema = yup.object({
+    email: yup.string().required(),
+    password: yup.string().required(),
+}).required()
+
+function Login() {
+    const { login } = React.useContext(AuthContext)
+    const state = React.useContext(AuthContext)
     const navigate = useNavigate()
 
-    const { login, logout } = React.useContext(AuthContext)
+    const { reset, setError, handleSubmit, control, formState: { isSubmitting, errors } } = useForm({ state, resolver: yupResolver(schema) })
+
     const onSubmit = (data) => {
-        login(data.username)
-        setOpen(false)
+        console.log(data)
+        setError('afterSubmit', { message: "Server Response Error !" })
+        login(data.email)
         navigate('/')
     }
     return (
-        <div>
-            <Modal
-                open={open}
-                onClose={handleClose}
-                aria-labelledby="modal-modal-title"
-                aria-describedby="modal-modal-description"
-            >
-                <Box sx={style}>
+        <>
+            <div className='contaner-login' style={{ display: 'flex', padding: "10% 30% 0% 30%", height: '100vh' }}>
+                <div className='login-page' style={styleForm}>
+                    <Typography variant='h3' textAlign='center' mb={3}>
+                        Login
+                    </Typography>
                     <form onSubmit={handleSubmit(onSubmit)}>
-                        <FTextField label={"Username"} control={control} name="username" />
-                        <FTextField label={"Password"} control={control} name="password" />
-                        <LoadingButton
-                            sx={{ width: "100%" }}
-                            size="large"
-                            type="submit"
-                            variant="contained"
-                            fullWidth
-                        > Login</LoadingButton>
+                        <Stack spacing={3}>
+                            {!!errors.afterSubmit && (
+                                <Alert severity='error'>{errors.afterSubmit.message}</Alert>
+                            )}
+
+                            <Controller name="email" control={control} render={({ field, fieldState: { error } }) =>
+                                <TextField label="Email" autoComplete='off' fullWidth error={!!error} helperText={error?.message} {...field}  {...field} />}
+                            />
+                            <Controller name='password' control={control} render={({ field, fieldState: { error } }) => (
+                                <TextField label='Password' autoComplete='off' fullWidth error={!!error} helperText={error?.message} {...field} />
+                            )} />
+                            <LoadingButton fullWidth size='large' variant='contained' type='submit' loading={isSubmitting}>Login</LoadingButton>
+                        </Stack>
                     </form>
-                </Box>
-            </Modal>
-        </div>
-    );
+                </div>
+            </div >
+        </>
+    )
 }
+
+export default Login

@@ -2,8 +2,8 @@ import React from 'react'
 import '../css/MainSearch.css'
 import Imgae from "../img/backgroundMovie.webp"
 import { AuthContext } from '../context/AuthContext';
-import ListMovie from './ListMovie'
-import FAlert from '../components/FAlert'
+import ListMovie from './ListMovie';
+import MovieSearch from './MovieSearch';
 
 function MainSearch() {
     const { user, login } = React.useContext(AuthContext)
@@ -15,16 +15,17 @@ function MainSearch() {
     return (
         <div className='container-main'>
             {user === null ?
-                <><section className='section1'>
-                    <div className='box'></div>
-                    <div className='text-center'>
-                        <h2 className='texth2-sec1'>Thank you for coming and grading </h2>
-                        <p className='p4'>Full Stack Web -<span> React Ecosystem</span></p>
-                        <p className='p2'>This is a <span>Project Challenge</span> used to end module 2.2 </p>
-                        <p className='p3'></p>
-                        <button className='button-52'>About Us</button>
-                    </div>
-                </section>
+                <>
+                    <section className='section1'>
+                        <div className='box'></div>
+                        <div className='text-center'>
+                            <h2 className='texth2-sec1'>Thank you for coming and grading </h2>
+                            <p className='p4'>Full Stack Web -<span> React Ecosystem</span></p>
+                            <p className='p2'>This is a <span>Project Challenge</span> used to end module 2.2 </p>
+                            <p className='p3'></p>
+                            <button className='button-52'>About Us</button>
+                        </div>
+                    </section>
                     <div className='border'></div>
                     <section className='section2'>
                         <div className='allText-Video'>
@@ -85,7 +86,11 @@ function MainSearch() {
                     <div className='border'></div>
                 </> :
                 <section id='section5'>
-                    <ListMovie />
+                    <MovieSearch />
+                    <ListMovie title="Now Playing" url="/now_playing" />
+                    <ListMovie title="Popular" url="/popular" />
+                    <ListMovie title="Toprated" url="/top_rated" />
+                    <ListMovie title="Upcoming" url="/upcoming" />
                     <div className='border'></div>
                 </section>
             }

@@ -21,7 +21,7 @@ export default function ButtonAppBar() {
             <div className='user'>
                 {user ?
                     <div>
-                        Hi <span> {user?.username} </span> Welcome Back !
+                        <div> Hi <span> {user?.username} </span> Welcome Back !</div>
                     </div> :
                     <div>Welcome To My <span>Project Challenge</span></div>
                 }

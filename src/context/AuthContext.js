@@ -6,6 +6,7 @@ import { useEffect } from 'react'
 const initialState = {
     isAuthenticated: false,
     user: null,
+    pass: null,
 };
 
 const LOGIN_SUCCESS = "LOGIN_SUCCESS";
