@@ -3,8 +3,9 @@ import '../css/Header.css'
 import { AuthContext } from '../context/AuthContext'
 import { Link, Outlet } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom';
+import MovieSearch from './MovieSearch'
 
-export default function ButtonAppBar() {
+export default function Header({ page }) {
     const { user, logout } = React.useContext(AuthContext);
     const state = React.useContext(AuthContext)
     const navigate = useNavigate()
@@ -20,9 +21,15 @@ export default function ButtonAppBar() {
             </div>
             <div className='user'>
                 {user ?
-                    <div>
-                        <div> Hi <span> {user?.username} </span> Welcome Back !</div>
-                    </div> :
+                    <>
+                        <div>
+                            <div> Hi <span> {user?.username} </span> Welcome Back !</div>
+                        </div>
+                        <div className='inputGroup'>
+                            <MovieSearch page={page} />
+                        </div>
+                    </>
+                    :
                     <div>Welcome To My <span>Project Challenge</span></div>
                 }
             </div>

@@ -33,11 +33,18 @@
     color: white;
     font-weight: bold;
     user-select: none;
+    display: flex;
+    gap: 100px;
+    align-items: center;
 }
 
 .user span {
     color: rgb(210 82 39);
 }
+
+/* .inputGroup {
+    display: flex;
+} */
 
 .actionBtn {
     display: flex;

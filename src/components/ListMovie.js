@@ -21,8 +21,8 @@ function ListMovie({ title, url }) {
 
     return (
         <div>
-            <h2>{title}</h2>
-            <div className="movie-list" style={{ display: "flex", gap: "10px", flexWrap: "wrap", justifyContent: "center" }}>
+            <h2 style={{ padding: "20px" }}><span>{title}</span></h2>
+            <div className="movie-list" style={{ display: "flex", gap: "20px", flexWrap: "wrap", justifyContent: "center" }}>
                 {movies.slice(0, 8).map((movie) =>
                     <MovieCard id={movie.id} title={movie.title} img={movie.poster_path} />
                 )}

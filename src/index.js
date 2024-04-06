@@ -5,7 +5,7 @@ import { Routes, Route, BrowserRouter } from 'react-router-dom'
 import Login from "./page/Login";
 import DetailMovie from "./page/DetailMovie";
 import { AuthProvider } from "./context/AuthContext";
-import MovieSearchList from "./layout/MovieSearchList";
+import MovieSearchList from "./page/MovieSearchList";
 
 
 const root = ReactDOM.createRoot(document.getElementById("root"));

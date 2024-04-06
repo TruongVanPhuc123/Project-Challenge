@@ -369,6 +369,10 @@ span {
     color: rgb(255, 255, 255);
 }
 
+#section5 {
+    padding: 20px;
+}
+
 /* .content .allData-Like {
     display: flex;
     align-items: center;

@@ -1,4 +1,3 @@
-import axios from 'axios';
 import React from 'react'
 import { useNavigate, useSearchParams, useLocation } from 'react-router-dom'
 import SearchIcon from '@mui/icons-material/Search';
@@ -8,7 +7,6 @@ function MovieSearch() {
     const [searchParams, setSearchParams] = useSearchParams()
     const navigate = useNavigate()
     const location = useLocation()
-    console.log(searchParams)
 
     const handleChange = (event) => {
         let query = event.target.value
@@ -25,16 +23,9 @@ function MovieSearch() {
 
     return (
         <>
-            <div className='containerSearch'>
-                <div className='containerMovie'>
-                    <div className='movie-title'>
-                        <div className='search-movie' >
-                            <input type='text' className='form-field' placeholder='Find Movie ?' value={searchParams.get('query') || ''} onChange={handleChange} />
-                            <div className='line-movie'></div>
-                            <div onClick={handleClick}><SearchIcon sx={{ fontSize: '2rem', cursor: "pointer" }} /></div>
-                        </div>
-                    </div>
-                </div>
+            <div className='form-group' >
+                <input type='text' className='form-field' placeholder='Search ...' value={searchParams.get('query') || ''} onChange={handleChange} />
+                <span onClick={handleClick}><SearchIcon sx={{ fontSize: '1.25rem', cursor: "pointer", paddingTop: "5px" }} /></span>
             </div>
         </>
     )
