@@ -20,6 +20,7 @@ const schema = yup.object({
 }).required()
 
 function Login() {
+    const [isLogin, setIsLogin] = React.useState(false)
     const { login } = React.useContext(AuthContext)
     const state = React.useContext(AuthContext)
     const navigate = useNavigate()
@@ -28,9 +29,16 @@ function Login() {
 
     const onSubmit = (data) => {
         console.log(data)
-        setError('afterSubmit', { message: "Server Response Error !" })
-        login(data.email)
-        navigate('/')
+        setIsLogin(true)
+        if (data) {
+            setTimeout(() => {
+                login(data.email)
+                navigate('/')
+            }, 1500);
+        } else {
+            setError('afterSubmit', { message: "Server Response Error !" })
+        }
+        return clearTimeout()
     }
     return (
         <>
@@ -51,7 +59,9 @@ function Login() {
                             <Controller name='password' control={control} render={({ field, fieldState: { error } }) => (
                                 <TextField label='Password' autoComplete='off' fullWidth error={!!error} helperText={error?.message} {...field} />
                             )} />
-                            <LoadingButton fullWidth size='large' variant='contained' type='submit' loading={isSubmitting}>Login</LoadingButton>
+                            <LoadingButton fullWidth size='large' variant='contained' type='submit'>
+                                {isLogin === true ? <>Please Waiting ...</> : <>Login</>}
+                            </LoadingButton>
                         </Stack>
                     </form>
                 </div>

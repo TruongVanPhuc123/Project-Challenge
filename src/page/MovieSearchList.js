@@ -1,36 +1,10 @@
-import axios from 'axios'
 import React from 'react'
-import { useLocation, useNavigate } from 'react-router-dom'
-import { useState } from 'react'
 import MovieCard from '../components/MovieCard';
 import '../css/MovieListSearch.css'
 import Header from '../components/Header'
 import Page from './Page';
 
-const options = {
-    method: 'GET',
-    headers: {
-        accept: 'application/json',
-        Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI1YmU1ZDMzOGJmZTg5ZTA2YzMxZTUwMzRiMzdiODJkMiIsInN1YiI6IjY1ZWY3MGY2Mzk3ZGYwMDE4NDkzMzBjNiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.v2fdMzryuGI5dfBVg-TBq25dCYfLmTA9sbm5ioVf9oU'
-    }
-};
-
-function MovieSearchList() {
-    const [dataSearch, setDataSearch] = useState([])
-    const [pageMovie, setPageMovie] = useState(1)
-    const location = useLocation()
-    console.log(pageMovie)
-
-    React.useEffect(() => {
-        axios.get(`https://api.themoviedb.org/3/search/movie${location.search}&page=${pageMovie}`, options)
-            .then(response => {
-                setDataSearch(response.data.results)
-                // setPageMovie(response.data.page)
-            })
-            .catch(error => console.log(error.message))
-        // console.log(`https://api.themoviedb.org/3/search/movie${location.search}&page=${page}`)
-    }, [location.search, pageMovie])
-
+function MovieSearchList({ dataSearch, page, handlePageChange }) {
     return (
         <>
             <Header />
@@ -44,7 +18,12 @@ function MovieSearchList() {
                             </>
                     ))}
                 </div>
-                <Page pageMovie={pageMovie} />
+                {/* <Page /> */}
+                <div className='btnGroup' style={{ display: "flex", alignItems: "center", paddingTop: "20px", gap: "10px" }}>
+                    <button className='btn-login prev' disabled={page === 1} onClick={() => handlePageChange(page - 1)}>Prev</button>
+                    <span style={{ fontSize: "2rem" }}>{page}</span>
+                    <button className='btn-login next' disabled={dataSearch.length === 0} onClick={() => handlePageChange(page + 1)}>Next</button>
+                </div>
             </div>
         </>
     )

@@ -8,6 +8,7 @@ import Section3 from './main-content/Section3';
 import Section4 from './main-content/Section4';
 import Section5 from './main-content/Section5';
 import Section6 from './main-content/Section6';
+import LoginMessage from './LoginMessage';
 
 function MainSearch() {
     const { user } = React.useContext(AuthContext)
@@ -26,6 +27,8 @@ function MainSearch() {
                     <div className='border'></div>
                 </> :
                 <>
+                    <LoginMessage />
+
                     <Section5 />
                     <div className='border'></div>
                 </>

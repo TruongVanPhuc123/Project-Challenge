@@ -5,9 +5,9 @@ import GradeIcon from '@mui/icons-material/Grade';
 import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace';
 
 export default function DetailMovie({ dataID, dataGenres, date }) {
-    const handleBack = () => {
-        // navigate('/')
-    }
+    // const handleBack = () => {
+    //     navigate('/')
+    // }
 
     return (
         <>
