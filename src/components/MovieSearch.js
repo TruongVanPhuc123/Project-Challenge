@@ -18,7 +18,11 @@ function MovieSearch() {
     };
 
     const handleClick = () => {
-        navigate(`/search` + location.search)
+        if (location.search === '') {
+            alert('Please type your search !')
+        } else {
+            navigate(`/search` + location.search)
+        }
     }
 
     return (

@@ -1,41 +1,119 @@
 .container-modal {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-around;
-    gap: 50px;
     text-transform: capitalize;
-    /* background-color: rgba(154, 154, 154, 0.1); */
+    background-color: rgba(0, 0, 0, 0.9);
+    position: relative;
+    z-index: 1;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.modal-img-name {
-    text-align: center;
+.group-detail {
+    position: relative;
+    z-index: 2;
+    width: 80%;
+    margin-top: 70px;
 }
 
-.close-modal {
-    cursor: pointer;
+.group-detail img {
+    width: 100%;
+    height: 70vh;
+    border-radius: 15px;
+}
+
+.drop-detail {
     position: absolute;
-    top: 20%;
-    right: 5%;
-    background-color: rgba(154, 154, 154, 0.1);
-
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    top: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 15px;
 }
 
-.allRight-modal {
+.bottom-detail {
+    font-family: cursive;
     display: flex;
-    flex-direction: column;
-    gap: 50px;
 }
 
-.date-rated-modal {
+.overview-group-detail {
+    position: absolute;
+    bottom: 10%;
+    left: 5%;
+    color: white;
+    width: 60%;
+}
+
+.action-detail {
+    position: absolute;
+    bottom: 10%;
+    right: 10%;
+    color: white;
+    /* width: 50%; */
+}
+
+.title-detail {
     display: flex;
-    flex-direction: row;
-    justify-content: space-between;
     align-items: center;
+    gap: 20px;
 }
 
-.vote-modal {
+.title-detail h3 {
+    font-size: 1.5rem;
+}
+
+.title-detail p {
+    font-size: 1.25rem;
+    color: #b0b0b0;
+}
+
+.genres-detail {
     display: flex;
     align-items: center;
-    gap: 5px;
+    gap: 10px;
+    font-size: 1.25rem;
+}
+
+.overview-detail {
+    padding-top: 30px;
+    font-size: 1rem;
+    text-transform: capitalize;
+}
+
+.play-detail {
+    padding: 20% !important;
+    border-radius: 60px !important;
+    background: #cb1b3b !important;
+}
+
+.rated-detail {
+    position: absolute;
+    top: 5%;
+    right: 7%;
+    font-size: 2rem;
+    color: white;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.rated-detail .vote-detail {
+    font-size: 1.5rem;
+}
+
+.rated-detail .icon-detail {
+    color: #cb1b3b;
+}
+
+.back-detail {
+    position: absolute;
+    top: 12%;
+    right: 10%;
+    color: white;
+    cursor: pointer;
+    margin-bottom: 20px;
+    background-color: rgba(168, 168, 168, 0.1);
+    padding: 5px;
+    border-radius: 5px;
 }

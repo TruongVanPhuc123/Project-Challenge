@@ -5,7 +5,7 @@ import { Link, Outlet } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom';
 import MovieSearch from './MovieSearch'
 
-export default function Header({ page }) {
+export default function Header() {
     const { user, logout } = React.useContext(AuthContext);
     const state = React.useContext(AuthContext)
     const navigate = useNavigate()
@@ -23,10 +23,10 @@ export default function Header({ page }) {
                 {user ?
                     <>
                         <div>
-                            <div> Hi <span> {user?.username} </span> Welcome Back !</div>
+                            <div> Hi <span> {user?.username} </span></div>
                         </div>
                         <div className='inputGroup'>
-                            <MovieSearch page={page} />
+                            <MovieSearch />
                         </div>
                     </>
                     :

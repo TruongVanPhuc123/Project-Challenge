@@ -1,35 +1,20 @@
 import React from 'react'
-import { useState } from 'react'
-import { useNavigate, useLocation } from 'react-router-dom'
-import axios from 'axios'
-import MovieSearchList from './MovieSearchList'
 
-function Page({ url, options }) {
-    const [page, setPage] = useState(1)
-    const navigate = useNavigate()
-    const location = useLocation()
-    console.log(location)
+function Page({ pageMovie }) {
+    const [page, setPage] = React.useState(pageMovie)
 
-    const handlePrev = () => {
-        if (page > 1) {
-            setPage(page - 1)
-            navigate(`${location.search}&page=${page - 1}`)
-        }
-    }
-
-    const hanldeNext = () => {
-        setPage(page + 1)
-        navigate(`${location.search}&page=${page + 1}`)
+    const handlePageChange = (page) => {
+        setPage(page)
     }
 
     return (
-        <>
-            <div className='btnGroup'>
-                <button className='btnPrev' onClick={handlePrev}>Prev</button>
-                <span>{page}</span>
-                <button className='btnNext' onClick={hanldeNext}>Next</button>
+        <div className='btnGroup'>
+            <div className='btnGroup' style={{ display: "flex", alignItems: "center", paddingTop: "20px", gap: "10px" }}>
+                <button className='btn-login' disabled={page >= 1} onClick={() => handlePageChange(page - 1)}>Prev</button>
+                <span style={{ fontSize: "2rem" }}>{page}</span>
+                <button className='btn-login' onClick={() => handlePageChange(page + 1)}>Next</button>
             </div>
-        </>
+        </div>
     )
 }
 
