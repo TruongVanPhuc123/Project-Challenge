@@ -25,7 +25,7 @@ function MovieSearchList() {
         axios.get(`https://api.themoviedb.org/3/search/movie${location.search}&page=${pageMovie}`, options)
             .then(response => {
                 setDataSearch(response.data.results)
-                setPageMovie(response.data.page)
+                // setPageMovie(response.data.page)
             })
             .catch(error => console.log(error.message))
         // console.log(`https://api.themoviedb.org/3/search/movie${location.search}&page=${page}`)
@@ -44,7 +44,7 @@ function MovieSearchList() {
                             </>
                     ))}
                 </div>
-                <Page pageMovie={pageMovie} />
+                <Page pageMovie={pageMovie} setPageMovie={setPageMovie} />
             </div>
         </>
     )
