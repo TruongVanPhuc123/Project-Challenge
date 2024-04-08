@@ -44,7 +44,7 @@ function MovieSearchList() {
                             </>
                     ))}
                 </div>
-                <Page pageMovie={pageMovie} setPageMovie={setPageMovie} />
+                <Page pageMovie={pageMovie} />
             </div>
         </>
     )

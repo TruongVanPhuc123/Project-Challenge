@@ -1,6 +1,6 @@
 import React from 'react'
 
-function Page({ pageMovie, setPageMovie }) {
+function Page({ pageMovie }) {
     const [page, setPage] = React.useState(pageMovie)
 
     const handlePageChange = (page) => {
