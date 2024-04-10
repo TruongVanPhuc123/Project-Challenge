@@ -1,7 +1,6 @@
-import axios from 'axios'
 import React from 'react'
-import MovieCard from './MovieCard';
-import Page from '../page/Page';
+import axios from 'axios'
+import ListMovie from './ListMovie';
 
 const options = {
     method: 'GET',
@@ -11,7 +10,7 @@ const options = {
     }
 };
 
-function ListMovie({ title, url }) {
+function DataListMovie({ title, url }) {
     const [movies, setMovies] = React.useState([])
 
     React.useEffect(() => {
@@ -19,17 +18,9 @@ function ListMovie({ title, url }) {
             .then((response) => setMovies(response.data.results))
             .catch((error) => console.log(error.message))
     }, [url])
-
     return (
-        <div>
-            <h2 style={{ padding: "20px" }}><span>{title}</span></h2>
-            <div className="movie-list" style={{ display: "flex", gap: "20px", flexWrap: "wrap", justifyContent: "center" }}>
-                {movies.slice(0, 8).map((movie) =>
-                    <MovieCard id={movie.id} title={movie.title} img={movie.poster_path} />
-                )}
-            </div>
-        </div>
+        <div><ListMovie dataSearch={movies} title={title} /></div>
     )
 }
 
-export default ListMovie
+export default DataListMovie

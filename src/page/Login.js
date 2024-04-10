@@ -54,10 +54,10 @@ function Login() {
                             )}
 
                             <Controller name="email" control={control} render={({ field, fieldState: { error } }) =>
-                                <TextField label="Email" autoComplete='off' fullWidth error={!!error} helperText={error?.message} {...field}  {...field} />}
+                                <TextField label="Email" type='text' autoComplete='off' fullWidth error={!!error} helperText={error?.message} {...field}  {...field} />}
                             />
                             <Controller name='password' control={control} render={({ field, fieldState: { error } }) => (
-                                <TextField label='Password' autoComplete='off' fullWidth error={!!error} helperText={error?.message} {...field} />
+                                <TextField label='Password' type='password' autoComplete='off' fullWidth error={!!error} helperText={error?.message} {...field} />
                             )} />
                             <LoadingButton fullWidth size='large' variant='contained' type='submit'>
                                 {isLogin === true ? <>Please Waiting ...</> : <>Login</>}

@@ -2,7 +2,8 @@ import React from 'react'
 import { useLocation, useNavigate, useSearchParams } from 'react-router-dom'
 import { useState } from 'react'
 import axios from 'axios'
-import MovieSearchList from '../page/MovieSearchList';
+import ListMovie from '../renderMovie/ListMovie';
+import MovieSearchList from '../../page/MovieSearchList';
 
 const options = {
     method: 'GET',
@@ -32,7 +33,9 @@ function DataMovieSearch() {
             .catch(error => console.log(error.message))
     }, [location.search, page])
     return (
-        <div><MovieSearchList dataSearch={dataSearch} page={page} handlePageChange={handlePageChange} /></div>
+        <div>
+            <MovieSearchList dataSearch={dataSearch} page={page} handlePageChange={handlePageChange} />
+        </div>
     )
 }
 

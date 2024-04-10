@@ -1,15 +1,22 @@
 import React from 'react'
-import MovieCard from '../components/MovieCard';
+import MovieCard from '../components/renderMovie/MovieCard';
 import '../css/MovieListSearch.css'
-import Header from '../components/Header'
-import Page from './Page';
+import Header from '../components/content/Header'
+import NextPrevBtn from '../components/button/NextPrevBtn';
 
 function MovieSearchList({ dataSearch, page, handlePageChange }) {
     return (
         <>
             <Header />
-            <div className='listSearchMovie'>
-                <h2 style={{ paddingBottom: '20px' }}>Search Results</h2>
+            <div className='listMovie'>
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-around', width: '100%', paddingBottom: '20px' }}>
+                    <div>
+                        <h2>
+                            <span>Search Results</span>
+                        </h2>
+                    </div>
+                    <div><NextPrevBtn data={dataSearch} page={page} handlePageChange={handlePageChange} /></div>
+                </div>
                 <div style={{ display: "flex", gap: "20px", flexWrap: "wrap", justifyContent: "center" }}>
                     {dataSearch.map((movie) => (
                         movie.backdrop_path === null ? <></> :
@@ -17,12 +24,6 @@ function MovieSearchList({ dataSearch, page, handlePageChange }) {
                                 <MovieCard id={movie.id} title={movie.title} img={movie.poster_path} />
                             </>
                     ))}
-                </div>
-                {/* <Page /> */}
-                <div className='btnGroup' style={{ display: "flex", alignItems: "center", paddingTop: "20px", gap: "10px" }}>
-                    <button className='btn-login prev' disabled={page === 1} onClick={() => handlePageChange(page - 1)}>Prev</button>
-                    <span style={{ fontSize: "2rem" }}>{page}</span>
-                    <button className='btn-login next' disabled={dataSearch.length === 0} onClick={() => handlePageChange(page + 1)}>Next</button>
                 </div>
             </div>
         </>

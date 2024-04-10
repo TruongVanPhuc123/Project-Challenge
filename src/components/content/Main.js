@@ -1,14 +1,15 @@
 import React from 'react'
-import '../css/MainSearch.css'
-import Imgae from "../img/backgroundMovie.webp"
-import { AuthContext } from '../context/AuthContext';
-import Section1 from './main-content/Section1';
-import Section2 from './main-content/Section2';
-import Section3 from './main-content/Section3';
-import Section4 from './main-content/Section4';
-import Section5 from './main-content/Section5';
-import Section6 from './main-content/Section6';
-import LoginMessage from './LoginMessage';
+import '../../css/MainSearch.css'
+import Imgae from "../../img/backgroundMovie.webp"
+import { AuthContext } from '../../context/AuthContext';
+import Section1 from '../section-content/Section1';
+import Section2 from '../section-content/Section2';
+import Section3 from '../section-content/Section3';
+import Section4 from '../section-content/Section4';
+import Section5 from '../section-content/Section5';
+import Section6 from '../section-content/Section6';
+import LoginMessage from '../LoginMessage';
+
 
 function MainSearch() {
     const { user } = React.useContext(AuthContext)
@@ -18,7 +19,6 @@ function MainSearch() {
             {user === null ?
                 <>
                     <Section1 />
-                    <div className='border'></div>
                     <Section2 Image={Imgae} />
                     <div className='border'></div>
                     <Section3 />
@@ -27,8 +27,7 @@ function MainSearch() {
                     <div className='border'></div>
                 </> :
                 <>
-                    <LoginMessage />
-
+                    {/* <LoginMessage /> */}
                     <Section5 />
                     <div className='border'></div>
                 </>

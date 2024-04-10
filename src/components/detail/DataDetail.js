@@ -1,18 +1,14 @@
 import React from 'react'
-import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import DetailMovie from '../page/DetailMovie';
+import ModalDetail from '../../page/ModalDetail.js'
 
-function DataDetail() {
+function DataDetail({ id }) {
     const [dataID, setDataID] = React.useState([])
     const [dataGenres, setDataGenres] = React.useState([])
     const [date, setDate] = React.useState('')
-    const params = useParams()
-    const movieId = params.id
-    console.log(dataID)
 
     React.useEffect(() => {
-        axios.get(`https://api.themoviedb.org/3/movie/${movieId}?api_key=5be5d338bfe89e06c31e5034b37b82d2`)
+        axios.get(`https://api.themoviedb.org/3/movie/${id}?api_key=5be5d338bfe89e06c31e5034b37b82d2`)
             .then(response => {
                 setDataID(response.data)
                 setDataGenres(response.data.genres)
@@ -20,10 +16,11 @@ function DataDetail() {
             })
             .catch(err => console.log(err.message))
         // console.log(`https://api.themoviedb.org/3/movie/${movieId}?api_key=5be5d338bfe89e06c31e5034b37b82d2`)
-    }, [movieId])
+    }, [id])
     return (
         <div>
-            <DetailMovie dataID={dataID} dataGenres={dataGenres} date={date} />
+            {/* <DetailMovie dataID={dataID} dataGenres={dataGenres} date={date} /> */}
+            <ModalDetail dataID={dataID} dataGenres={dataGenres} date={date} />
         </div>
     )
 }

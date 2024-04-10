@@ -1,8 +1,8 @@
 import React from 'react'
-import Header from '../components/Header'
-import Main from '../components/Main'
+import Header from '../components/content/Header'
+import Main from '../components/content/Main'
 
-function RenderHeaderMain({ handlePrev, page, hanldeNext }) {
+function RenderHeaderMain() {
     return (
         <div className="container">
             <Header />

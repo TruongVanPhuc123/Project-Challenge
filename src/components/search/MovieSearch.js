@@ -1,7 +1,7 @@
 import React from 'react'
 import { useNavigate, useSearchParams, useLocation } from 'react-router-dom'
 import SearchIcon from '@mui/icons-material/Search';
-import '../css/MovieSearch.css'
+import '../../css/MovieSearch.css'
 
 function MovieSearch() {
     const [searchParams, setSearchParams] = useSearchParams()
