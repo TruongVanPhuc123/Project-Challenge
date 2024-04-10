@@ -1,5 +1,5 @@
 import React from 'react'
-import ModalGenres from './ModalGenres'
+import ModalGenres from '../../page/ModalGenres'
 import axios from 'axios';
 
 const options = {

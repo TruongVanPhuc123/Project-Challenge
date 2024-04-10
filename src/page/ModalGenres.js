@@ -1,5 +1,5 @@
 import * as React from 'react';
-import '../../css/Genres.css'
+import '../css/Genres.css'
 import { useNavigate } from 'react-router-dom'
 
 export default function BasicModal({ genres }) {

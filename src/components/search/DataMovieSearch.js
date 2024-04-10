@@ -34,7 +34,7 @@ function DataMovieSearch() {
     }, [location.search, page])
     return (
         <div>
-            <MovieSearchList dataSearch={dataSearch} page={page} handlePageChange={handlePageChange} />
+            <ListMovie dataSearch={dataSearch} title='Search Results' />
         </div>
     )
 }

@@ -1,6 +1,6 @@
 import React from 'react'
-import FAlert from '../components/FAlert'
-import { AuthContext } from '../context/AuthContext'
+import FAlert from '../tool/FAlert'
+import { AuthContext } from '../../context/AuthContext'
 
 const style = {
     position: 'fixed',

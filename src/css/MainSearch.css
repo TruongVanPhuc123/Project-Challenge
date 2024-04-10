@@ -345,15 +345,6 @@ span {
 
 }
 
-.container-footer {
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    padding: 20px;
-    gap: 10px;
-    font-size: 1rem;
-}
-
 .idea-designer {
     display: flex;
     gap: 40px;

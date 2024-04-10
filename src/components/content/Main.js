@@ -8,7 +8,7 @@ import Section3 from '../section-content/Section3';
 import Section4 from '../section-content/Section4';
 import Section5 from '../section-content/Section5';
 import Section6 from '../section-content/Section6';
-import LoginMessage from '../LoginMessage';
+import LoginMessage from '../tool/LoginMessage';
 
 
 function MainSearch() {
