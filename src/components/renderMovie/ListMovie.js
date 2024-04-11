@@ -1,8 +1,6 @@
 import React from 'react'
 import MovieCard from './MovieCard';
-import NextPrevBtn from '../button/NextPrevBtn';
 import '../../css/MovieListSearch.css'
-import Header from '../content/Header';
 import axios from 'axios'
 
 const options = {
@@ -17,7 +15,7 @@ function ListMovie({ title, url }) {
 
     const [movies, setMovies] = React.useState([])
     const [page, setPage] = React.useState(1)
-
+    console.log(movies)
 
     React.useEffect(() => {
         axios.get(`https://api.themoviedb.org/3${url}&page=${page}`, options)
@@ -26,26 +24,28 @@ function ListMovie({ title, url }) {
     }, [url, page])
 
     return (
-        <div className='listMovie'>
-            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-around', width: '100%', padding: '30px 0' }}>
-                <div>
-                    <h2>
-                        <span>{title}</span>
-                    </h2>
+        <div className='container-main'>
+            <div className='listMovie'>
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-around', width: '100%', paddingTop: '100px', paddingBottom: "30px    " }}>
+                    <div>
+                        <h2>
+                            <span>{title}</span>
+                        </h2>
+                    </div>
+                    <div className='btnGroup' style={{ display: "flex", alignItems: "center", paddingTop: "20px", gap: "10px" }}>
+                        <button className='btn-login prev' disabled={page === 1} onClick={() => setPage(page - 1)}>Prev Page</button>
+                        <span style={{ fontSize: "2rem" }}>{page}</span>
+                        <button className='btn-login next' disabled={movies.length === 0} onClick={() => setPage(page + 1)}>Next Page</button>
+                    </div>
                 </div>
-                <div className='btnGroup' style={{ display: "flex", alignItems: "center", paddingTop: "20px", gap: "10px" }}>
-                    <button className='btn-login prev' disabled={page === 1} onClick={() => setPage(page - 1)}>Prev Page</button>
-                    <span style={{ fontSize: "2rem" }}>{page}</span>
-                    <button className='btn-login next' onClick={() => setPage(page + 1)}>Next Page</button>
+                <div style={{ display: "flex", gap: "20px", flexWrap: "wrap", justifyContent: "center" }}>
+                    {movies.map((movie) => (
+                        movie.backdrop_path === null ? <></> :
+                            <>
+                                <MovieCard id={movie.id} title={movie.title} img={movie.poster_path} />
+                            </>
+                    ))}
                 </div>
-            </div>
-            <div style={{ display: "flex", gap: "20px", flexWrap: "wrap", justifyContent: "center" }}>
-                {movies.map((movie) => (
-                    movie.backdrop_path === null ? <></> :
-                        <>
-                            <MovieCard id={movie.id} title={movie.title} img={movie.poster_path} />
-                        </>
-                ))}
             </div>
         </div>
     )

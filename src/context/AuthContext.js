@@ -39,6 +39,7 @@ function AuthProvider({ children }) {
     const login = async (username, password) => {
         window.localStorage.setItem('user', username);
         window.localStorage.setItem('password', password);
+        window.localStorage.setItem('isLogin', LOGIN_SUCCESS);
         dispatch({
             type: LOGIN_SUCCESS,
             payload: { user: { username }, pass: { password } },

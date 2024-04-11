@@ -25,7 +25,7 @@ function MovieSearch() {
     return (
         <>
             <div className='form-group' >
-                <input type='text' className='form-field' placeholder='Search ...' value={searchParams.get('query') || ''} onChange={handleChange} />
+                <input type='text' className='form-field' placeholder='Search Movie ...' value={searchParams.get('query') || ''} onChange={handleChange} />
                 <span onClick={handleClick}><SearchIcon sx={{ fontSize: '1.25rem', cursor: "pointer", paddingTop: "5px" }} /></span>
             </div>
         </>

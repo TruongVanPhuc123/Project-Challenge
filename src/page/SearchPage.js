@@ -7,7 +7,7 @@ function DataMovieSearch() {
     let [searchParams] = useSearchParams()
 
     return (
-        <div>
+        <div className='container'>
             <Header />
             <ListMovie url={`/search/movie?query=${searchParams.get('query')}`} title='Search' />
         </div>
