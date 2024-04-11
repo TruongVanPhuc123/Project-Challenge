@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
-import '../css/DetailMovie.css'
+import '../../css/DetailMovie.css'
 import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace';
 
 const style = {

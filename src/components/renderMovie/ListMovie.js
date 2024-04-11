@@ -16,12 +16,14 @@ const options = {
 function ListMovie({ title, url }) {
 
     const [movies, setMovies] = React.useState([])
+    const [page, setPage] = React.useState(1)
+
 
     React.useEffect(() => {
-        axios.get(`https://api.themoviedb.org/3/movie${url}`, options)
-            .then((response) => setMovies(response.data.results))
+        axios.get(`https://api.themoviedb.org/3${url}&page=${page}`, options)
+            .then((response) => { setMovies(response.data.results) })
             .catch((error) => console.log(error.message))
-    }, [url])
+    }, [url, page])
 
     return (
         <div className='listMovie'>
@@ -31,7 +33,11 @@ function ListMovie({ title, url }) {
                         <span>{title}</span>
                     </h2>
                 </div>
-                <div><NextPrevBtn /></div>
+                <div className='btnGroup' style={{ display: "flex", alignItems: "center", paddingTop: "20px", gap: "10px" }}>
+                    <button className='btn-login prev' disabled={page === 1} onClick={() => setPage(page - 1)}>Prev Page</button>
+                    <span style={{ fontSize: "2rem" }}>{page}</span>
+                    <button className='btn-login next' onClick={() => setPage(page + 1)}>Next Page</button>
+                </div>
             </div>
             <div style={{ display: "flex", gap: "20px", flexWrap: "wrap", justifyContent: "center" }}>
                 {movies.map((movie) => (

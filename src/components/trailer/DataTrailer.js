@@ -1,5 +1,5 @@
 import React from 'react'
-import ModalTrailer from '../../page/ModalTrailer'
+import ModalTrailer from './Trailer'
 import axios from 'axios';
 import { useParams } from 'react-router-dom'
 

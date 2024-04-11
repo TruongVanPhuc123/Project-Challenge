@@ -1,6 +1,6 @@
 import React from 'react'
 import axios from 'axios';
-import ModalDetail from '../../page/ModalDetail.js'
+import ModalDetail from './Detail.js'
 
 function DataDetail({ id }) {
     const [dataID, setDataID] = React.useState([])

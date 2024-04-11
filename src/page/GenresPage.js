@@ -1,6 +1,8 @@
+import axios from 'axios'
 import React from 'react'
-import ModalGenres from '../../page/ModalGenres'
-import axios from 'axios';
+import { useParams } from 'react-router-dom'
+import Header from '../components/content/Header'
+import ListMovie from '../components/renderMovie/ListMovie'
 
 const options = {
     method: 'GET',
@@ -10,8 +12,12 @@ const options = {
     }
 };
 
-function DataGenres() {
+function DataGenresID() {
     const [genres, setGenres] = React.useState([])
+    const params = useParams()
+    let id = params.id
+    const find = genres.find((genres) => Number(genres.id) === Number(id))
+    console.log(find)
 
     React.useEffect(() => {
         const url = 'https://api.themoviedb.org/3/genre/movie/list'
@@ -20,8 +26,11 @@ function DataGenres() {
     }, [])
 
     return (
-        <div><ModalGenres genres={genres} /></div>
+        <div>
+            <Header />
+            <ListMovie url={`/discover/movie?api_key=5be5d338bfe89e06c31e5034b37b82d2&language=en-US&append_to_response=videos&with_genres=${id}`} />
+        </div>
     )
 }
 
-export default DataGenres
+export default DataGenresID

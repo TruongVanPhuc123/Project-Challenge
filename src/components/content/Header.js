@@ -3,7 +3,7 @@ import '../../css/Header.css'
 import { AuthContext } from '../../context/AuthContext'
 import { Link, Outlet } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom';
-import ModalAccount from '../ModalAccount'
+import Account from '../Account'
 import Navbar from '../navbar/Navbar';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import MovieSearch from '../../components/search/MovieSearch'
@@ -11,7 +11,9 @@ import MovieSearch from '../../components/search/MovieSearch'
 export default function Header() {
     const [open, setOpen] = React.useState(false)
 
-    const { user, logout } = React.useContext(AuthContext);
+    const { logout } = React.useContext(AuthContext);
+    const user = window.localStorage.getItem('user');
+
     const state = React.useContext(AuthContext)
     const navigate = useNavigate()
     const handleClick = () => {
@@ -37,22 +39,19 @@ export default function Header() {
                         <AccountCircleIcon sx={{ fontSize: '2.5rem', cursor: 'pointer' }} />
                     </div>
                     <div className={`account ${open ? 'active' : 'inactive'}`} >
-                        <ModalAccount state={state} user={user} logout={logout} />
+                        <Account state={state} user={user} logout={logout} />
                     </div>
                 </>
                 :
-                <div style={{ color: 'white', fontWeight: 'bold' }}>Welcome To My <span>Project Challenge</span></div>
-            }
-            {state.isAuthenticated === false ?
-                <div className='actionBtn'>
-                    <Link to='/login'>
-                        <button className='btn-login'>Login</button>
-                    </Link>
-                </div> :
-                // <Link to='/'>
-                //     <button className='btn-logout' onClick={logout}>Logout</button>
-                // </Link>
-                <></>
+                <>
+                    <div style={{ color: 'white', fontWeight: 'bold' }}>Welcome To My <span>Project Challenge</span></div>
+
+                    <div className='actionBtn'>
+                        <Link to='/login'>
+                            <button className='btn-login'>Login</button>
+                        </Link>
+                    </div>
+                </>
             }
         </div>
     );

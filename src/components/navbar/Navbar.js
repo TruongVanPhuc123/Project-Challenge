@@ -1,6 +1,6 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
-import DataGenres from '../genres/DataGenres'
+import ListGenres from '../genres/ListGenres'
 
 const styles = {
     display: 'flex',
@@ -14,13 +14,13 @@ const styles = {
 function Navbar() {
     const [open, setOpen] = React.useState(false)
     const navigate = useNavigate()
-    const handleClick = () => navigate('/');
+
     return (
         <div style={styles} >
-            <div onClick={handleClick}>Home </div>
+            <div onClick={() => navigate('/')}>Home </div>
             <div onClick={() => { setOpen(!open) }}>Genres</div>
             <div className={`${open ? 'active' : 'inactive'}`}>
-                <DataGenres />
+                <ListGenres />
             </div>
         </div>
     )

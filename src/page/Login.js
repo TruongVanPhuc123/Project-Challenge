@@ -28,11 +28,11 @@ function Login() {
     const { reset, setError, handleSubmit, control, formState: { isSubmitting, errors } } = useForm({ state, resolver: yupResolver(schema) })
 
     const onSubmit = (data) => {
-        console.log(data)
         setIsLogin(true)
+        // console.log(data)
         if (data) {
             setTimeout(() => {
-                login(data.email)
+                login(data.email, data.password)
                 navigate('/')
             }, 1500);
         } else {
